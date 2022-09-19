@@ -152,7 +152,13 @@ sh -c "echo \"source ~/$name_catkin_workspace/devel/setup.bash\" >> ~/.bashrc"
 sh -c "echo \"export ROS_MASTER_URI=http://localhost:11311\" >> ~/.bashrc"
 sh -c "echo \"export ROS_HOSTNAME=localhost\" >> ~/.bashrc"
 
-source $HOME/.bashrc
+echo ""
+echo ""
+
+echo "[Sourcing bashrc]"
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
 echo ""
 echo "[ROS Noetic Installation Complete!!!]"
 echo "[Type [ rosversion -d ] to get the current ROS installed version]"
