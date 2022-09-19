@@ -2,55 +2,123 @@
 # Apache License 2.0
 # Copyright (c) 2022, Siliris Technologies Pvt. Ltd. 
 
+name_ros_distro=noetic 
+user_name=$(whoami)
+
+echo "#######################################################################################################################"
 echo ""
+echo "[Starting ROS Noetic Installation]"
 echo "[Note] Target OS version  >>> Ubuntu 20.04.x (Focal Fossa) or Linux Mint 21.x"
 echo "[Note] Target ROS version >>> ROS Noetic Ninjemys"
 echo "[Note] Catkin workspace   >>> $HOME/catkin_ws"
 echo ""
-echo "PRESS [ENTER] TO CONTINUE THE INSTALLATION"
-echo "IF YOU WANT TO CANCEL, PRESS [CTRL] + [C]"
-read
+#echo "PRESS [ENTER] TO CONTINUE THE INSTALLATION"
+#echo "IF YOU WANT TO CANCEL, PRESS [CTRL] + [C]"
+#read
 
-echo "[Set the target OS, ROS version and name of catkin workspace]"
+#Getting version and release number of Ubuntu
+echo ">>> [Checking your Ubuntu version] "
+version=`lsb_release -sc`
+relesenum=`grep DISTRIB_DESCRIPTION /etc/*-release | awk -F 'Ubuntu ' '{print $2}' | awk -F ' LTS' '{print $1}'`
+echo ">>> [Your Ubuntu version is: (Ubuntu $version $relesenum)]"
+#Checking version is focal, if yes proceed othervice quit
+case $version in
+  "focal" )
+  ;;
+  *)
+    echo ">>> [ERROR: This script will only work on Ubuntu Focal (20.04).]"
+    exit 0
+esac
+
+echo "This is a compatible version of Ubuntu for ROS Noetic"
+echo "[Setting the target OS, ROS version and name of catkin workspace]"
 name_os_version=${name_os_version:="focal"}
 name_ros_version=${name_ros_version:="noetic"}
 name_catkin_workspace=${name_catkin_workspace:="catkin_ws"}
 
-echo "[Update the package lists]"
+echo "[Updating the packages]"
 sudo apt update -y
+
+echo ""
+echo "[Configuring Ubuntu repositories]"
+echo ""
+sudo add-apt-repository universe
+sudo add-apt-repository restricted
+sudo add-apt-repository multiverse
+
+echo ""
+echo ">>> [Done: Added Ubuntu repositories]"
+echo ""
 
 echo "[Install build environment, the chrony, ntpdate and set the ntpdate]"
 sudo apt install -y chrony ntpdate curl build-essential
 sudo ntpdate ntp.ubuntu.com
 
-echo "[Add the ROS repository]"
+echo "[Adding the ROS repository]"
 if [ ! -e /etc/apt/sources.list.d/ros-latest.list ]; then
   sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu ${name_os_version} main\" > /etc/apt/sources.list.d/ros-latest.list"
 fi
 
-echo "[Download the ROS keys]"
+echo "[Downloading ROS keys]"
 roskey=`apt-key list | grep "Open Robotics"`
 if [ -z "$roskey" ]; then
   curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 fi
+echo "[Done: Added sources.list]"
+echo ""
 
-echo "[Check the ROS keys]"
-roskey=`apt-key list | grep "Open Robotics"`
-if [ -n "$roskey" ]; then
-  echo "[ROS key exists in the list]"
-else
-  echo "[Failed to receive the ROS key, aborts the installation]"
-  exit 0
-fi
+echo "[Installing curl and Setting up ROS keys]"
+sudo apt install curl
+
+echo "[This will take a few seconds for adding keys]"
+ret=$(curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE8868B172B4F42ED6FBAB17C654' | sudo apt-key add -)
+#Checking return value is OK
+case $ret in
+  "OK" )
+  ;;
+  *)
+    echo "[Failed to receive ROS keys, aborting the installation]"
+    exit 0
+esac
+
+echo "[ROS Keys added]"
 
 echo "[Update the package lists]"
 sudo apt update -y
 
-echo "[Install ros-desktop-full version of Noetic"
-sudo apt install -y ros-$name_ros_version-desktop-full
+echo ""
+echo "[Pick the version of ROS you would like to Install. Default is Desktop-Full]"
+echo "     [1. Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages ]"
+echo ""
+echo "     [2. Desktop Install: Everything in ROS-Base plus tools like rqt and rviz]"
+echo ""
+echo "     [3. ROS-Base: (Bare Bones) ROS packaging, build, and communication libraries. No GUI tools.]"
+echo ""
 
-echo "[Install RQT & Gazebo]"
-sudo apt install -y ros-$name_ros_version-rqt-* ros-$name_ros_version-gazebo-*
+case "$answer" in
+  1)
+    package_type="desktop-full"
+    ;;
+  2)
+    package_type="desktop"
+    ;;
+  3)
+    package_type="ros-base"
+    ;;
+  * )
+    package_type="desktop-full"
+    ;;
+esac	
+
+echo ""
+echo "[Starting ROS installation, this will really take some time. A mug of coffee might help you!]"
+
+sudo apt-get install -y ros-${name_ros_distro}-${package_type} 
+
+if [ package_type == "desktop-full" ] || [ package_type == "desktop" ]; then
+	echo "[Installing RQT & Gazebo]"
+	sudo apt install -y ros-$name_ros_version-rqt-* ros-$name_ros_version-gazebo-*
+fi
 
 echo "[Environment setup and getting rosinstall]"
 source /opt/ros/$name_ros_version/setup.sh
