@@ -2,7 +2,7 @@
 Set of Scripts required to install and use ros
 
 ## Installing ROS Noetic on Ubuntu 20.04.x (Focal Fossa)
-_install_ros_noetic.sh_
+[_install_ros_noetic.sh_]([https://pages.github.com/](https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/install_ros_noetic.sh?token=GHSAT0AAAAAABY6LBPRIDKFD3NAMHPPHNTGYZIPYZA))
 
 ### Install file for installing ROS Noetic on Ubuntu 20 Platform
 ### To install do the following from your command prompt: 
