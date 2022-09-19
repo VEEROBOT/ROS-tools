@@ -16,6 +16,7 @@ bash ./install_ros_noetic.sh
 If the above install fails, please refer to official install guide : http://wiki.ros.org/noetic/Installation/Ubuntu
 
 ### Install these ROS Packages if required
+```
 $ sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy \
   ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc \
   ros-noetic-rgbd-launch ros-noetic-depthimage-to-laserscan \
@@ -25,7 +26,7 @@ $ sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy \
   ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro \
   ros-noetic-compressed-image-transport ros-noetic-rqt* \
   ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
-  
+```  
   ### Nerwork Configuration
   Connect PC to a WiFi device and find the assigned IP address with the command below
   ``` ifconfig ```
