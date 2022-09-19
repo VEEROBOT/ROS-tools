@@ -11,15 +11,13 @@ echo "[Note] Target OS version  >>> Ubuntu 20.04.x (Focal Fossa) or Linux Mint 2
 echo "[Note] Target ROS version >>> ROS Noetic Ninjemys"
 echo "[Note] Catkin workspace   >>> $HOME/catkin_ws"
 echo ""
-#echo "PRESS [ENTER] TO CONTINUE THE INSTALLATION"
-#echo "IF YOU WANT TO CANCEL, PRESS [CTRL] + [C]"
-#read
 
 #Getting version and release number of Ubuntu
-echo ">>> [Checking your Ubuntu version] "
+echo ""
+echo "[Checking your Ubuntu version] "
 version=`lsb_release -sc`
 relesenum=`grep DISTRIB_DESCRIPTION /etc/*-release | awk -F 'Ubuntu ' '{print $2}' | awk -F ' LTS' '{print $1}'`
-echo ">>> [Your Ubuntu version is: (Ubuntu $version $relesenum)]"
+echo "[Your Ubuntu version is: (Ubuntu $version $relesenum)]"
 #Checking version is focal, if yes proceed othervice quit
 case $version in
   "focal" )
@@ -46,7 +44,7 @@ sudo add-apt-repository restricted
 sudo add-apt-repository multiverse
 
 echo ""
-echo ">>> [Done: Added Ubuntu repositories]"
+echo "[Done: Added Ubuntu repositories]"
 echo ""
 
 echo "[Install build environment, the chrony, ntpdate and set the ntpdate]"
@@ -70,7 +68,7 @@ echo "[Installing curl and Setting up ROS keys]"
 sudo apt install curl
 
 echo "[This will take a few seconds for adding keys]"
-ret=$(curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE8868B172B4F42ED6FBAB17C654' | sudo apt-key add -)
+ret=$(curl -s 'https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc' | sudo apt-key add -)
 #Checking return value is OK
 case $ret in
   "OK" )
@@ -85,8 +83,6 @@ echo "[ROS Keys added]"
 echo "[Update the package lists]"
 sudo apt update -y
 
-
-
 echo ""
 echo "[Pick the version of ROS you would like to Install. Default is Desktop-Full]"
 echo "     [1. Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages ]"
@@ -96,7 +92,7 @@ echo ""
 echo "     [3. ROS-Base: (Bare Bones) ROS packaging, build, and communication libraries. No GUI tools.]"
 echo ""
 
-read -p "Enter your install (Default is 1):" answer 
+read -p "Enter your choice (Default is 1):" answer 
 #Default value is 1: Desktop full install
 case "$answer" in
   1)
@@ -118,13 +114,13 @@ echo "[Starting ROS installation, this will really take some time. A mug of coff
 
 sudo apt-get install -y ros-${name_ros_distro}-${package_type} 
 
-if [ package_type == "desktop-full" ] || [ package_type == "desktop" ]; then
-	echo "[Installing RQT & Gazebo]"
-	sudo apt install -y ros-$name_ros_version-rqt-* ros-$name_ros_version-gazebo-*
+if [[ package_type == "desktop-full" || package_type == "desktop" ]]; then
+echo "[Installing RQT & Gazebo]"
+sudo apt install -y ros-$name_ros_version-rqt-* ros-$name_ros_version-gazebo-*
 fi
 
 echo "[Environment setup and getting rosinstall]"
-source /opt/ros/$name_ros_version/setup.sh
+source /opt/ros/$name_ros_version/setup.bash
 sudo apt install -y python3-rosinstall python3-rosinstall-generator python3-wstool build-essential git
 
 echo "[Install rosdep and Update]"
@@ -141,7 +137,7 @@ catkin_init_workspace
 cd $HOME/$name_catkin_workspace
 catkin_make
 
-echo "[Set the ROS evironment]"
+echo "[Setting up the ROS evironment]"
 sh -c "echo \"alias eb='nano ~/.bashrc'\" >> ~/.bashrc"
 sh -c "echo \"alias sb='source ~/.bashrc'\" >> ~/.bashrc"
 sh -c "echo \"alias gs='git status'\" >> ~/.bashrc"
@@ -157,6 +153,7 @@ sh -c "echo \"export ROS_MASTER_URI=http://localhost:11311\" >> ~/.bashrc"
 sh -c "echo \"export ROS_HOSTNAME=localhost\" >> ~/.bashrc"
 
 source $HOME/.bashrc
-
-echo "[Complete!!!]"
+echo ""
+echo "[ROS Noetic Installation Complete!!!]"
+echo "[Type [ rosversion -d ] to get the current ROS installed version]"
 exit 0
