@@ -4,7 +4,8 @@ Set of Scripts required to install and use ros
 ## Installing ROS Noetic on Ubuntu 20.04.x (Focal Fossa)
 [_install_ros_noetic.sh_](https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/install_ros_noetic.sh)
 
-### Install file for installing ROS Noetic on Ubuntu 20 Platform
+## Install Script
+### Install script for installing ROS Noetic on Ubuntu 20 Platform
 ### To install do the following from your command prompt: 
 
 ```
@@ -14,9 +15,28 @@ wget https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/install_ros_noeti
 chmod 755 ./install_ros_noetic.sh 
 bash ./install_ros_noetic.sh
 ```
+
+### Single Line Install
+```
+wget -c https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/install_ros_noetic.sh && chmod +x ./install_ros_noetic.sh && ./install_ros_noetic.sh
+```
 If the above install fails, please refer to official install guide : http://wiki.ros.org/noetic/Installation/Ubuntu
 
+## Uninstall Script
+### Uninstall script for ROS Noetic and ROS Dependancies. Does not remove python and other non ros packages
+```
+wget https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/uninstall_ros_noetic.sh
+chmod 755 ./uninstall_ros_noetic.sh
+bash ./uninstall_ros_noetic.sh
+```
+### Single Line Uninstall
+
+```
+wget -c https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/uninstall_ros_noetic.sh && chmod +x ./uninstall_ros_noetic.sh && ./uninstall_ros_noetic.sh
+```
+
 ### Install these ROS Packages if required
+
 ```
 $ sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy \
   ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc \
@@ -28,7 +48,7 @@ $ sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy \
   ros-noetic-compressed-image-transport ros-noetic-rqt* \
   ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
 ```  
-  ### Nerwork Configuration
+  ### Network Configuration
   Connect PC to a WiFi device and find the assigned IP address with the command below
   ``` ifconfig ```
   Open the file and update the ROS IP settings with the command below. 
