@@ -16,25 +16,15 @@ chmod 755 ./install_ros_noetic.sh
 bash ./install_ros_noetic.sh
 ```
 
-### Single Line Install
-```
-wget -c https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/install_ros_noetic.sh && chmod +x ./install_ros_noetic.sh && ./install_ros_noetic.sh
-```
 If the above install fails, please refer to official install guide : http://wiki.ros.org/noetic/Installation/Ubuntu
 
 ## Uninstall Script
 ### Uninstall script for ROS Noetic and ROS Dependancies. Does not remove python and other non ros packages
 ```
-wget https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/uninstall_ros_noetic.sh
-chmod 755 ./uninstall_ros_noetic.sh
+sudo wget https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/uninstall_ros_noetic.sh
+sudo chmod +x ./uninstall_ros_noetic.sh
 bash ./uninstall_ros_noetic.sh
 ```
-### Single Line Uninstall
-
-```
-wget -c https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/uninstall_ros_noetic.sh && chmod +x ./uninstall_ros_noetic.sh && ./uninstall_ros_noetic.sh
-```
-
 ### Install these ROS Packages if required
 
 ```
