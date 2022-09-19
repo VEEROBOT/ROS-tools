@@ -85,6 +85,8 @@ echo "[ROS Keys added]"
 echo "[Update the package lists]"
 sudo apt update -y
 
+
+
 echo ""
 echo "[Pick the version of ROS you would like to Install. Default is Desktop-Full]"
 echo "     [1. Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages ]"
@@ -94,6 +96,8 @@ echo ""
 echo "     [3. ROS-Base: (Bare Bones) ROS packaging, build, and communication libraries. No GUI tools.]"
 echo ""
 
+read -p "Enter your install (Default is 1):" answer 
+#Default value is 1: Desktop full install
 case "$answer" in
   1)
     package_type="desktop-full"
