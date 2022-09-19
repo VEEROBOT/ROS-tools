@@ -5,7 +5,6 @@
 name_ros_distro=noetic 
 user_name=$(whoami)
 
-echo "#######################################################################################################################"
 echo ""
 echo "[Starting ROS Noetic Installation]"
 echo "[Note] Target OS version  >>> Ubuntu 20.04.x (Focal Fossa) or Linux Mint 21.x"
