@@ -54,10 +54,12 @@ rosrun roscpp_tutorials listner
 ```
 
 ### Network Configuration
-Connect PC to a WiFi device and find the assigned IP address with the command below
-``` ifconfig ```
-Open the file and update the ROS IP settings with the command below. 
-``` nano ~/.bashrc ```
+If the above script is used to install ROS, ROS_MASTER_URI and ROS_HOSTNAME is already set to localhost.
+Edit ```.bashrc``` file to change the IP to default IP address assigned to ROS MASTER
+Connect PC to a WiFi network and find the assigned IP address with the command below
+``` ifconfig ``` or ```ip addr show```
+Open the file and update the ROS IP settings with the command below from home folder
+``` nano ~/.bashrc ``` or ``` vi ~/.bashrc ```
 Modify the address of localhost in the ROS_MASTER_URI and ROS_HOSTNAME with the IP address acquired from the above terminal window. Add the details at the end of the file. Use CTRL + END or ALT + / or move the cursor line by line to end of file
  ```
  export ROS_MASTER_URI = http://<ipaddress_from_above>:11311
