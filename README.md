@@ -2,7 +2,7 @@
 Set of Scripts required to install and use ros
 
 ## Install Ubuntu 20.04 Focal Version
-Refer [Wolf-Bot](https://github.com/VEEROBOT/Wolf-Bot) script to understand and install Ubuntu for Wolf.
+Refer [Wolf-Bot](https://github.com/VEEROBOT/Wolf-Bot) link to understand and install Ubuntu for Wolf.
 This script installs ROS Noetic version and can only be installed on a compatible Ubuntu Version
 
 ## Installing ROS Noetic on Ubuntu 20.04.x (Focal Fossa)
