@@ -25,6 +25,8 @@ sudo wget https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/uninstall_ro
 sudo chmod +x ./uninstall_ros_noetic.sh
 bash ./uninstall_ros_noetic.sh
 ```
+### Now delete last two sourcing lines from .bashrc file. If not removed, it throws error that /opt... not found
+
 ### Install these ROS Packages if required
 
 ```
