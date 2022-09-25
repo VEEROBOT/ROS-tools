@@ -17,7 +17,9 @@ sudo apt-get upgrade
 wget https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/install_ros_noetic.sh
 chmod 755 ./install_ros_noetic.sh 
 bash ./install_ros_noetic.sh
+source ~/.bashrc
 ```
+If rosversion says unknown, make sure you have typed the last line to source the bashrc file. After that it should say Noetic
 
 If the above install fails, please refer to official install guide : http://wiki.ros.org/noetic/Installation/Ubuntu
 
