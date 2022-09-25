@@ -19,7 +19,7 @@ bash ./install_ros_noetic.sh
 If the above install fails, please refer to official install guide : http://wiki.ros.org/noetic/Installation/Ubuntu
 
 ## Uninstall Script
-### Uninstall script for ROS Noetic and ROS Dependancies. Does not remove python and other non ros packages
+### Uninstall script for ROS Noetic and ROS Dependancies
 ```
 sudo wget https://raw.githubusercontent.com/VEEROBOT/ROS-tools/main/uninstall_ros_noetic.sh
 sudo chmod +x ./uninstall_ros_noetic.sh
