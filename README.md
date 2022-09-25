@@ -53,8 +53,7 @@ rosrun roscpp_tutorials talker
 rosrun roscpp_tutorials listner
 ```
 
-### Network Configuration
-If the above script is used to install ROS, ROS_MASTER_URI and ROS_HOSTNAME is already set to localhost.
+### Optional - Network Configuration
 Edit ```.bashrc``` file to change the IP to default IP address assigned to ROS MASTER
 Connect PC to a WiFi network and find the assigned IP address with the command below
 ``` ifconfig ``` or ```ip addr show```
