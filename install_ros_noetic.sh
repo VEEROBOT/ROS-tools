@@ -56,14 +56,6 @@ if [ ! -e /etc/apt/sources.list.d/ros-latest.list ]; then
   sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu ${name_os_version} main\" > /etc/apt/sources.list.d/ros-latest.list"
 fi
 
-echo "[Downloading ROS keys]"
-roskey=`apt-key list | grep "Open Robotics"`
-if [ -z "$roskey" ]; then
-  curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-fi
-echo "[Done: Added sources.list]"
-echo ""
-
 echo "[Installing curl and Setting up ROS keys]"
 sudo apt install curl
 
@@ -81,6 +73,8 @@ esac
 echo "[ROS Keys added]"
 
 echo "[Update the package lists]"
+echo "[This process will take time depending on your network speed]"
+
 sudo apt update -y
 
 echo ""
@@ -110,7 +104,7 @@ case "$answer" in
 esac	
 
 echo ""
-echo "[Starting ROS installation, this will really take some time. A mug of coffee might help you!]"
+echo "[Starting ROS installation, this will really take some time. A mug of might help you!]"
 
 sudo apt-get install -y ros-${name_ros_distro}-${package_type} 
 
@@ -160,6 +154,6 @@ echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
 echo ""
-echo "[ROS Noetic Installation Complete!!!]"
+echo "[ROS Noetic Installation Complete - Siliris Technologies Pvt. Ltd!]"
 echo "[Type [ rosversion -d ] to get the current ROS installed version]"
 exit 0
