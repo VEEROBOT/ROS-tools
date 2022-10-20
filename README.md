@@ -51,7 +51,7 @@ $ sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy \
 ```
 roscore
 rosrun roscpp_tutorials talker
-rosrun roscpp_tutorials listner
+rosrun roscpp_tutorials listener
 ```
 
 ### Optional - Network Configuration
