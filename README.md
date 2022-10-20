@@ -53,6 +53,7 @@ roscore
 rosrun roscpp_tutorials talker
 rosrun roscpp_tutorials listener
 ```
+If roscpp_tutorials is not installed, use ```sudo apt-get install ros-noetic-roscpp-tutorials``` to install roscpp-tutorials for noetic
 
 ### Optional - Network Configuration
 Edit ```.bashrc``` file to change the IP to default IP address assigned to ROS MASTER
